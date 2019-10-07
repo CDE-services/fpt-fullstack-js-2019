@@ -5,7 +5,7 @@ function numberToText() {
     var number = +numInput.value;
 
     if(number >= 1000) {
-        writeNumber(number % 1000);
+        writeNumber((number - (number % 1000)) / 1000);
         writeNumber(1000);
         number %= 1000;
     }
