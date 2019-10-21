@@ -291,21 +291,34 @@ function arrays() {
     }
 }
 arrays();
-
+*/
 //------------------ rest, spread operators: ... -------------
 // ES5 - apply, push, concat ---> ...
 var arr1 = [1, 2, 3];
 var arr2 = [4, 5, 6];
 var arr3 = [7, 8, 9, 10];
-var m = Math.max.apply(null, [-1, 5, 11, 3]); //aplikacia funkcie na parametre
-var n = arr1.push.apply(arr1, arr2); //aplikacia push do pola na viacero parametrov
+// var m = Math.max.apply(null, [-1, 5, 11, 3]); //aplikacia funkcie na parametre
+// var n = arr1.push.apply(arr1, arr2); //aplikacia push do pola na viacero parametrov
 var o = arr1.concat(arr2, arr3); //zretazenie poli
 // ES6
-let p = Math.max(...[-1, 5, 11, 3]);
-let q = arr1.push(...arr2);
+// let p = Math.max(...[-1, 5, 11, 3]);
+// let q = arr1.push(...arr2);
 let r = [...arr1, ...arr2, ...arr3];
 
+function Person(
+	name,
+	age,
+	) {
+	this.name = name;
+	this.age = age;
+}
 
+console.log(new Person('Michaela', '34'));
+
+// console.log(p);
+// console.log(arr1);
+// console.log(o);
+/*
 //------------------- method definitions --------------------
 //ES5
 var obj1 = {
