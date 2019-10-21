@@ -6,7 +6,102 @@ var b = 10;
 const c = 10;
 //c = 20; // can't do, const is "final"
 
-function letTest() {
+// ARRAY FUNCTIONS (JS API), FUNCTION LITERALS (=>)
+const numbers = [1, 2, 3, 4];
+function multiplicator(additionalMultiplier = 1) {
+    return additionalMultiplier * numbers
+        .filter(cislo => cislo % 2 == 0)
+        .reduce(
+            (previous, actual, i) => previous * actual
+        );
+}
+
+console.log(multiplicator());
+console.log(multiplicator(10));
+
+// const cars = ['Toyota', 'Ferrari', 'Tesla'];
+
+// function filterCars(str) {
+//     return cars.filter(elem => elem.indexOf(str) >= 0);
+// }
+// console.log(filterCars('e'));
+
+// function testCarsForAStrAtLeastOne(str) {
+//     return cars.some(elem => elem.indexOf(str) >= 0);
+// }
+// console.log(testCarsForAStrAtLeastOne('r'));
+
+// function testCarsForAStr(str) {
+//     return cars.every(elem => elem.indexOf(str) >= 0);
+// }
+// console.log(testCarsForAStr('a'));
+
+// function searchCar(str) {
+//     return cars.findIndex((value, index) =>
+//         value.indexOf(str) >= 0);
+// }
+// 
+// console.log(searchCar('ejklfsd')); //malo by vratit Toyota
+
+//LOOP PERFORMANCE TESTS
+/*
+for (const index in cars) {
+    console.log(cars[index]);
+}
+for (const car of cars) {
+    console.log(car);
+}
+
+const pole = [];
+for(let i = 0; i < 500000; i++) {
+    pole.push(i);
+}
+
+const traverseWithForIn = function() {
+    for (const index in pole) {
+        const daco = pole[index];
+        // pole[index] = index+1;
+    }
+}
+const traverseWithForOf = function() {
+    for (const item of pole) {
+        const daco = item;
+    }
+}
+const traverseWithFor = function() {
+    for (let i = 0; i < pole.length; i++) {
+        const daco = pole[i];
+        // pole[i] = i+1;
+    }
+}
+
+const traverseWithForEach = function() {
+    pole.forEach(e => {const daco = e});
+    pole.forEach((e, index) => pole[index] = index+1);
+}
+console.time('traverseWithForIn');
+traverseWithForIn();
+console.timeEnd('traverseWithForIn');
+
+console.time('traverseWithForOf');
+traverseWithForOf();
+console.timeEnd('traverseWithForOf');
+
+console.time('traverseWithFor');
+traverseWithFor();
+console.timeEnd('traverseWithFor');
+
+console.time('traverseWithForEach');
+traverseWithForEach();
+console.timeEnd('traverseWithForEach');
+*/
+
+/*// EXPONENTIAL OPERATOR
+console.log(Math.pow(7, 8));
+console.log(7 ** 8);
+*/
+
+/*function letTest() {
     if (a === 5) {
         let a = 4; // !!! The scope is inside the if-block //ES6
         var b = 1; // The scope is inside the function     //ES5
@@ -19,7 +114,7 @@ function letTest() {
 letTest();
 
 console.log("a = " + a + ", b = " + b);  // 5, 10
-
+*/
 
 //------------------- string literals -----------------
 function printCoordES5(x, y) {
@@ -27,11 +122,29 @@ function printCoordES5(x, y) {
 }
 function printCoordES6(x, y) {
     console.log(`(${x}, ${y})`); //ina uvodzovka!!
+    // let win = false;
+//     console.log(`
+// <p>
+//     <h4>
+//         You are the ${win ? "winner" : "loser"}!
+//     </h4>
+// </p>
+// `); //ina uvodzovka!!
 }
+
+// PREPEND, APPEND
+
+const formatted = [0, 1, 12, 123, 1234,12345].map(
+    function(num) { 
+        return num.toString().padStart(10, ' ');
+    }
+);
+console.log(formatted);
+
 
 printCoordES5('ES', 5);
 printCoordES6('ES', 6);
-
+/*
 function createNumberRegExp(english) {
     const PERIOD = english ? String.raw`\.` : ` `; // (A)
     return new RegExp(`[0-9]+(${PERIOD}[0-9]+)?`);
@@ -78,7 +191,7 @@ function optional6({ start=0, end=-1, step=1 } = {}) {
 }
 optional5();
 optional6({start:0});
-
+*/
 //------------------- args -------------------
 function logAllArguments5() {
     for (var i=0; i < arguments.length; i++) {
@@ -107,6 +220,7 @@ trailingParams("Hello", "Janka", "Matus", "Dominik");
 
 //---------------- destructors ------------------
 function destructuring5() {
+    // var matchObj = /^(?:(\d\d\d\d)-(\d\d)-(\d\d))$/
     var matchObj = /^(\d\d\d\d)-(\d\d)-(\d\d)$/
         .exec("2999-12-31");
     var year = matchObj[1];
@@ -115,15 +229,35 @@ function destructuring5() {
     console.log("year: " + year + ", month: " + month + ", day: " + day);
 }
 function destructuring6() {
-    let [, year, month, day] =
-        /^(\d\d\d\d)-(\d\d)-(\d\d)$/
-            .exec("2999-12-31");
+    let [nullthGroup, year, month, day] =
+        /^(\d{4})-(\d{2})-(\d{2})$/
+            .exec("2999-12-01");
     console.log(`year: ${year}, month: ${month}, day: ${day}`);
+    console.log(`${nullthGroup}`); //nulta grupa je vzdy cely string
 }
 destructuring5();
 destructuring6();
 //also variable destructuring, see last array example
+/*
+// REGULAR EXPRESSIONS
+// /\d/ == /[0-9]/;
+// /\D/ == /[^0-9]/;
+// /\w/ == /[A-Za-z]/;
+// /\W/ == /[^A-Za-z]/;
+// miska
+// mishelka
+// mis
 
+function regexTest() {
+    let reg = /(\d{6})[-\/ ](\d{4})/
+    .exec("123456/1234");
+    console.log(reg);
+}
+regexTest();
+
+///mis((ka|helka)?)/;
+*/
+/*
 //--------------------- for ... of ----------------------
 function arrays() {
     var arr = ['a', 'b', 'c'];
@@ -329,3 +463,4 @@ class MyList2 extends Map {
 //import * as lib from 'lib';
 //console.log(lib.square(11)); // 121
 //console.log(lib.diag(4, 3)); // 5
+*/
