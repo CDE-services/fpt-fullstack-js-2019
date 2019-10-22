@@ -66,7 +66,7 @@
 
 var num = 5;
  try {
- 	//throw "Mnou vytvorena chyba";
+ 	throw new Error("Mnou vytvorena chyba");
  } catch (error) {
  	console.log("Vznikla chyba");
  	console.log(error);
